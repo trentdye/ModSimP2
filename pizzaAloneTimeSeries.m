@@ -24,9 +24,9 @@ SABoxOut = 1.3197;
 
 cAir = 1.01;
 mAir = 0.004935;
-tEnv = 20;
+tEnv = 23;
 
-y1_init = 204;
+y1_init = 204;4
 y2_init = 27;
 y3_init = 27;
 

@@ -1,6 +1,9 @@
-function [T, M] = pizzaTimeSeries()
+function [T, M] = pizzaTimeSeries(hCheese)
 
-hCheese = .1;
+clf;
+hold on;
+
+% hCheese = .1;
 hCrust = .1;
 % kPizza = 
 cCrust = 1.7;
@@ -13,7 +16,7 @@ SApizzaT = .0792;
 
 hBox = .01;
 kBox = .21;
-cBox = 5; %paper
+cBox = 1.17; %paper
 mBox = 2; %changed for effect
 SAboxCd = .09931;
 SAboxCv = 1.2204;
@@ -25,9 +28,9 @@ tEnv = 20;
 
 y1_init = 204;
 y2_init = 27;
-y3_init = 27;
+y3_init = 100;
 
-[T, M] = ode45(@derivFunc, [0, 300], [y1_init; y2_init; y3_init]);
+[T, M] = ode45(@derivFunc, [0, 1200], [y1_init; y2_init; y3_init]);
 
     function res = derivFunc(T, Y)
         
@@ -50,8 +53,14 @@ y3_init = 27;
         
         res = [dTdtPizza; dTdtBox; dTdtAir];
     end
- plot(T, M);
- legend('Pizza', 'Box','Air');
+
+
+%  plot(T, M(:,1), 'LineWidth', 4, 'Color', col2(4));
+%  plot(T, M(:,2), 'LineWidth', 4, 'Color', col2(5));
+%  plot(T, M(:,3), 'LineWidth', 4, 'Color', col2(2));
+%  legend('Pizza', 'Box','Air');
+ 
+ 
  disp('Done');
 end
 

@@ -1,5 +1,5 @@
 function res = pizzaCrunch(T, M)
-    coldTemp = 32;
+    coldTemp = 35;
     PizzaTemp = M(:, 1);
     coldTime = 0;
     for i = 1:length(PizzaTemp)
