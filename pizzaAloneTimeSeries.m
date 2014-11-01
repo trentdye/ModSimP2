@@ -2,9 +2,9 @@ function res = pizzaAloneTimeSeries()
 
 clf;
 
-hCheese = [8 25];
-hCrust = [12 0];
-cCrust = [1.7 0];
+hCheese = [8 0.1];
+hCrust = [12 .1];
+cCrust = [1.7 .1];
 cCheese = [3.7 1];
 
 % kPizza = 
@@ -34,7 +34,7 @@ y3_init = 27;
 
     function res = deriv_func(T, Y)
         tPizza = Y(1);
-        qConvPizza = hCheese(1)*SApizzaT*(tPizza-20) + hCrust(1)*SApizzaS*(tPizza-20);
+        qConvPizza = hCheese(2)*SApizzaT*(tPizza-20) + hCrust(2)*SApizzaS*(tPizza-20);
         dTdtPizza = (1/(mCrust*cCrust(1) + mCheese*cCheese(1)))*-qConvPizza;
         
         res = dTdtPizza;
