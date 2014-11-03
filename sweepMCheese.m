@@ -2,7 +2,7 @@ function [A, B] = sweepMCheese()
     clf;
     mCheeseMin = 0.198;
     mCheeseMax = 0.400;
-    mCheeseStep = 0.001;
+    mCheeseStep = 0.0001;
     disp((mCheeseMax-mCheeseMin)/mCheeseStep);
     TIMES = zeros(1,(round((mCheeseMax-mCheeseMin)/mCheeseStep)));
     MCHEESES = zeros(1,length(TIMES));
@@ -24,5 +24,5 @@ function [A, B] = sweepMCheese()
     ylabel('Time gain (minutes)');
     xlabel('Topping Mass (g)');
     title('Time Gain vs. Topping Mass');
-    xlim([0 (mCheeseMax-mCheeseMin)/mCheeseStep]);
+    xlim([0 (mCheeseMax-mCheeseMin)*1000]);
 end
