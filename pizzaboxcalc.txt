@@ -1,0 +1,9 @@
+15 in * 15 in * 1.9 in * .15 in thick
+0.381 *   * 0.048 * 
+
+bottom and top each = 33.75 in^3
+side each = 4.28 in^3
+
+total = 84.62 in^3 = 0.00138667 m^3
+
+0.7

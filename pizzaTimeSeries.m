@@ -1,15 +1,15 @@
-function [T, M] = pizzaTimeSeries(hCheese)
+function [T, M] = pizzaTimeSeries(mCheese)
 
 clf;
 hold on;
 
-% hCheese = .1;
+hCheese = .1;
 hCrust = .1;
 % kPizza = 
 cCrust = 1.7;
 cCheese = 4;
 mCrust = .556;
-mCheese = .198;
+%mCheese = .198;
 SApizzaB = 0.09931;
 SApizzaS = 0.03429;
 SApizzaT = .0792;
@@ -55,10 +55,13 @@ y3_init = 100;
     end
 
 
-%  plot(T, M(:,1), 'LineWidth', 4, 'Color', col2(4));
-%  plot(T, M(:,2), 'LineWidth', 4, 'Color', col2(5));
-%  plot(T, M(:,3), 'LineWidth', 4, 'Color', col2(2));
-%  legend('Pizza', 'Box','Air');
+ plot(T, M(:,1), 'LineWidth', 4, 'Color', col2(4));
+ plot(T, M(:,2), 'LineWidth', 4, 'Color', col2(5));
+ plot(T, M(:,3), 'LineWidth', 4, 'Color', col2(2));
+ legend('Pizza', 'Box','Air');
+ xlabel('Time (s)');
+ ylabel('Temperature (Celsius)');
+ title('Temperature vs. Time');
  
  
  disp('Done');

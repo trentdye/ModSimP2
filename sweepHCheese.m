@@ -1,4 +1,4 @@
-function res = sweep()
+function res = sweepHCheese()
     clf;
     hCheeseMin = 0.1;
     hCheeseMax = 3;
