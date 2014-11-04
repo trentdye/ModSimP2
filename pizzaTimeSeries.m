@@ -62,6 +62,8 @@ y3_init = 100;
 
 %% PLOT TIME SERIES W/ OPTIONS
 
+
+
 clf;
 hold on;
 
