@@ -1,9 +1,10 @@
-function [T, M] = newPizzaTimeSeries() %sweepMCheese changes mCheese
+function [T, M] = newPizzaTimeSeries(hCheese) %sweepMCheese changes mCheese
 
 %% CONSTANTS
 
-hContact = .07;
-hCheese = 0.1;
+hContact = .1;
+%hCheese = 0.07;
+hBoxSurr = 0.15;
 
 hCrust = .1;
 % kPizza = 
@@ -15,8 +16,8 @@ SApizzaB = 0.09931;
 SApizzaS = 0.03429;
 SApizzaT = .0792;
 
-hBox = .01;
-kBox = 0.00078; %.21;
+hBox = .06;
+kBox = 0.0078; %.21;
 cBox = 1.17; %paper
 mBox = 2; %changed for effect
 dBox = 0.00635;
@@ -36,8 +37,9 @@ SA = 0.09931;
 
 y1_init = 204;
 y2_init = 204;
+y3_init = 23;
 
-[T, M] = ode45(@derivFunc, [0, 1200], [y1_init; y2_init]);
+[T, M] = ode45(@derivFunc, [0, 1200], [y1_init; y2_init; y3_init]);
 
 
 %% DERIVATIVE FUNCTION
@@ -46,31 +48,37 @@ y2_init = 204;
         
         Tcheese = Y(1);
         Tcrust = Y(2);
+        Tbox = Y(3);
 
         dqContact = hContact*SA*(Tcheese-Tcrust);
         dqCheeseSurr = hCheese*SA*(Tcheese-tEnv);
         dqCrustSurr = kBox*SA*(Tcrust-tTable)/dBox;
+        dqBoxContact = hBox*SA*(Tcrust-Tbox);
+        dqBoxSurr = hBoxSurr*SA*(Tbox-tEnv);
+        
         dTdtCheese = 1/(mCheese*cCheese)*(-dqContact-dqCheeseSurr);
-        dTdtCrust = 1/(mCrust*cCrust)*(dqContact-dqCrustSurr);
+        dTdtCrust = 1/(mCrust*cCrust)*(dqContact-dqBoxContact);
+        dTdtBox = 1/(mBox*cBox)*(dqBoxContact-dqBoxSurr);
         
-        
-        res = [dTdtCheese; dTdtCrust];
+        res = [dTdtCheese; dTdtCrust; dTdtBox];
     end
 
 %% PLOT TIME SERIES W/ OPTIONS
 
 
+% 
+% clf;
+% hold on;
+% 
+%  plot(T, M(:,1), 'LineWidth', 4, 'Color', col2(4));
+%  plot(T, M(:,2), 'LineWidth', 4, 'Color', col2(5));
+%  plot(T, M(:,3), 'LineWidth', 4, 'Color', col2(2));
+%  legend('Cheese', 'Crust');
+%  xlabel('Time (s)');
+%  ylabel('Temperature (Celsius)');
+%  title('Temperature vs. Time');
+%  plot([0 1200],[32 32]);
 
-clf;
-hold on;
-
- plot(T, M(:,1), 'LineWidth', 4, 'Color', col2(4));
- plot(T, M(:,2), 'LineWidth', 4, 'Color', col2(5));
-% plot(T, M(:,3), 'LineWidth', 4, 'Color', col2(2));
- legend('Cheese', 'Crust');
- xlabel('Time (s)');
- ylabel('Temperature (Celsius)');
- title('Temperature vs. Time');
  
 % disp('Done');
 end
