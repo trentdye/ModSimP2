@@ -1,13 +1,16 @@
-function res = pizzaCrunch(T, M)
+function [okTime, okRange] = pizzaCrunch(T, M)
     coldTemp = 32.000; %highest temp for which temperature is considered 'cold'
-    PizzaTemp = M(:, 1);
-    coldTime = 0; %initialize coldTime in case of emergency
+    hotTemp = 65;
+    PizzaTemp = (M(:, 2) + M(:,1))/2;
+    index = 1;
     for i = 1:length(PizzaTemp)
-        if PizzaTemp(i) < coldTemp;
+        if PizzaTemp(i) < hotTemp && PizzaTemp(i) > coldTemp;
             %disp(PizzaTemp(i)); %check
-            coldTime = T(i);
-            break;
+            goodTime(index) = T(i);
+            index = index + 1;
         end
     end
-    res = coldTime;
+    okTime = goodTime(1);
+    okRange = goodTime(end) - goodTime(1);
+%     disp(goodTime);
 end
